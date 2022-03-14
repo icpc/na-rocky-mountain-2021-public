@@ -1,0 +1,23 @@
+\problemname{Protect the Pollen!}
+
+The Flariana flowers and the bumblebees form one of the nicest partnerships in the rainforest. In spring, several flowers bloom and start producing pollen. Special vines form a network of bridges between the flowers. Using the vines, there is exactly one way to get from each flower to any other flower.
+
+Every flower has a family of bees on it. This family protects all of the vines that touch that flower. This means that every vine is protected by two families. The family on flower $k$ consists of $s_k$ bees and has a pollination power of $p_k$.
+
+One day, a bee scout announced that there is a new flower patch over the hill and they need a group of bees to help pollinate it.
+
+As the bee queen, you must select a set of families to send on the mission. For every vine, at least one of the two families currently protecting it must stay behind so the vine remains protected. All bees in the selected families must go. You are willing to send at most $S$ bees on the mission in total.
+
+Determine the largest total pollination power that you can send on the mission.
+
+\section*{Input}
+
+The first line contains the integer $N$ ($1 \leq N \leq 300$), which is the number of flowers, and $S$ ($1 \leq S \leq 300$), which is the maximum number of bees you can send on the mission. The flowers are numbered $1$ to $N$.
+
+The next $N$ lines describe the families. Each of these lines contains two integers $s_k$ ($1 \leq s_k \leq 300$), which is the number of bees in this family, and $p_k$ ($1 \leq p_k \leq 100$), which is the pollination power of this family.
+
+The last $N-1$ lines describe the vines.  Each of these lines contains two distinct integers $u$ ($1 \leq u \leq N$) and $v$ ($1 \leq v \leq N$), indicating that there is a vine between flowers $u$ and $v$.
+
+\section*{Output}
+
+Display the largest total pollination power that you can send on the mission.

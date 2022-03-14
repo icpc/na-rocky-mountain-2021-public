@@ -1,0 +1,48 @@
+\problemname{Wordle with Friends}
+
+\begin{figure}[h]
+\begin{center}
+  \includegraphics[width=0.6\textwidth]{rmc22-wordle.png}
+\end{center}
+\end{figure}
+
+
+Zoe and her friends enjoy playing Wordle\footnote{\href{https://www.nytimes.com/games/wordle/}{Wordle} was created by Josh Wardle, and is now owned by the New York Times.} together and have decided to
+work cooperatively to solve the daily puzzle.
+
+Wordle is a game where players get six attempts to guess a hidden
+5-letter word.  With each word guessed, the system will mark each letter with one of three feedback colors:
+\begin{enumerate}
+	\item \texttt{Green} - this letter is in the word and occurs at this location.
+	\item \texttt{Yellow} - this letter is in the word, but not at this location.
+	\item \texttt{Gray} - this letter is not in the hidden word (with an exception for duplicate letters, see below).
+\end{enumerate}
+
+Note that duplicate letters can be a little tricky. First, \texttt{Green} letters are marked. For a single
+letter, suppose there are $X$ non-\texttt{Green} occurrences in the hidden word and $Y$ non-\texttt{Green}
+occurrences in the guess. The \emph{leftmost} $\min(X,Y)$ of the non-\texttt{Green} occurrences of this letter will be marked
+\texttt{Yellow} and the rest will be \texttt{Gray}.
+
+For example, if the hidden word was \texttt{FREED} and a guessed word was \texttt{GEESE}, the feedback would show
+the second \texttt{E} (the third letter) in \texttt{Green}, and the first and third \texttt{E}s (second and fifth letters of \texttt{GEESE}) respectively in \texttt{Yellow} and \texttt{Gray}.
+
+Knowing the list of all guessable words, help Zoe determine which words
+are still valid given their original guesses.
+
+\section*{Input}
+The first line of input contains two integers $N$ ($1 \leq N \leq 10$), which is the number of guesses
+Zoe and her friends have made, and $W$ ($1 \leq W \leq 10^4$), which is the number of guessable words.
+
+The next $N$ lines describe the guesses. Each line contains two 5-letter strings $g$ and $f$. 
+The first string, $g$, is the guess which consists only of uppercase English letters and is
+in the list of guessable words. The second string, $f$, is the feedback.
+The feedback is composed of the characters \texttt{G}, \texttt{Y},
+and \texttt{-}, respectively indicating \texttt{Green}, \texttt{Yellow}, and \texttt{Gray} for the
+guess.
+
+The last $W$ lines describe the list of distinct guessable words. Each line contains a 5-letter string of
+uppercase English letters.
+
+\section*{Output}
+Display all valid words, in the order they appear, from the guessable list of words. There will always
+be at least one valid word.

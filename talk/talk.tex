@@ -1,0 +1,334 @@
+\documentclass{beamer}
+\mode<presentation>
+{
+\usetheme{Warsaw}
+% \setbeamercovered{transparent}
+}
+\usepackage{amsmath,amsfonts,array,eepic,graphics}
+%\newcolumntype{d}{D{.}{.}{-1}}
+\usepackage{times}
+%\usepackage[T1]{fontenc}
+\usepackage{subfigure}
+%\usepackage{amsmath}
+
+\title[RMRC 2021 Solution Sketches]
+{2021 Rocky Mountain Regional \\ Programming Contest \\ \ \\ Solution Sketches}
+%\author % (optional, use only with lots of authors)
+%{Howard Cheng}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+\date
+{}
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+%\AtBeginSubsection[]
+%{
+% \begin{frame}<beamer>
+% \frametitle{Outline}
+% \tableofcontents[currentsection,currentsubsection]
+% \end{frame}
+%}
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command:
+%\beamerdefaultoverlayspecification{<+->}
+
+
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+\begin{frame}
+\frametitle{Credits}
+\begin{itemize}
+  \setlength\itemsep{0.5\baselineskip}
+\item Darko Aleksic
+\item Darcy Best
+\item Howard Cheng
+\item Ryan Farrell
+\item Zachary Friggstad
+\item Brandon Fuller
+\item Noah Weninger
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{A - Betting (44/47)}
+\begin{itemize}
+\setlength\itemsep{0.5\baselineskip}
+\item For each option, the answer is simply $\frac{100}{p}$ where $p$ is
+  the percentage bet on that option.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{E - Election Paradox (42/58)}
+\begin{itemize}
+\setlength\itemsep{0.5\baselineskip}
+\item To lose an election, you can afford to win as many as
+  $\lfloor \frac{N}{2} \rfloor$ regions---assume you win all votes in
+  these regions.
+\item For the remaining regions, you may win up to
+  $\lfloor \frac{p}{2} \rfloor$ votes and still lose.
+\item Greedy algorithm: win the regions with the $\lfloor \frac{N}{2} \rfloor$
+  highest population.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{C - Social Distancing (39/92)}
+\begin{itemize}
+  \setlength\itemsep{0.5\baselineskip}
+  \item If there is a gap of length $g$ between consecutive people, we can fit $\lfloor (g-1)/2\rfloor$ more people in that gap.
+  \item Sum this value over all gaps.
+  \item Don't forget about the gap between the last and first person in the input.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{H - RSA Mistake (17/108)}
+\begin{itemize}
+  \setlength\itemsep{0.5\baselineskip}
+\item Factor both numbers using trial division up to the square root. Takes $O(\sqrt n)$ time to factor $n$. Fast enough for this problem as both numbers are $\leq 10^{12}$.
+\item If either number is divisible by a prime more than once or if the two numbers share a prime in common: \texttt{no credit}.
+\item Otherwise, if either number is not a prime: \texttt{partial credit}.
+\item Otherwise, \texttt{full credit}.
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{D - Pawn Shop (16/100)}
+\begin{itemize}
+  \setlength\itemsep{0.3\baselineskip}
+  \item Scan left-to-right through both arrays at once.
+  \item Maintain a frequency counter as you scan: $freq[x]$ is the difference between the number of copies of item $x$ scanned so far from the first array minus the number of copies of $x$ scanned so far from the second array.
+  \item Also maintain a value $\Delta$ indicating how many keys $x$ are such that $freq[x] \neq 0$.
+  \item If $\Delta$ ever becomes $0$, place a divider.
+\end{itemize}
+\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{I - Slide Count (14/38)}
+\begin{itemize}
+\setlength\itemsep{0.5\baselineskip}
+\item Simulate the algorithm and remember a ``timestamp'' so that
+  each time $s$ or $e$ is incremented, the timestamp is incremented.
+\item In other words, the timestamp counts the number of windows encountered
+  so far.
+\item During the simulation, record the timestamp at which $w_i$
+  enters the window (i.e. when $e = i$)
+\item When the window leaves $w_i$ (i.e. when $s = i+1$), compute the
+  difference in timestamps.
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{L - Ticket Completed? (11/54)}
+\begin{itemize}
+\setlength\itemsep{0.5\baselineskip}
+\item Create a graph $G$ with the $n$ cities as vertices and any claimed rail segments as edges.
+%\item The total number of unique destination tickets is ${n \choose 2}$.
+\item Find the connected components $C_{i}$ within the graph (e.g. using BFS or DFS).
+\item For each connected component of $k$ vertices, there are ${k \choose 2}$ destination tickets that can be satisfied.
+\item The probability that a random pair of cities will be connected is the total number of satisfied destination tickets (across all connected components) divided by the total number of unique destination tickets:
+\[
+	\frac{\sum_{C_{i}} {|C_{i}| \choose 2}}{{ n \choose 2 }}
+\]
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{N - Wordle with Friends (10/67)}
+\begin{itemize}
+\setlength\itemsep{0.5\baselineskip}
+\item For each candidate word in the dictionary:
+	\begin{itemize}
+		\item Check whether each guess' feedback is consistent given the candidate word.
+		\item If the feedback is consistent for all guesses, output the word.
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}
+\frametitle{G - Loot Chest (6/10)}
+\begin{itemize}
+\setlength\itemsep{0.5\baselineskip}
+\item Recall: the expected number of times you need to flip a coin until you see heads if the coin has probability $p$ of being heads is $1/p$.
+\item So the expected number of times you need to open a prize pack is $1/(G/100)$.
+\item Just need to compute the expected number of games until you open a prize pack.
+\item {\bf Dynamic Programming}: If $e[P]$ is the expected number of games until you open a prize pack given that your current probability of getting a pack is $P$ is then:
+\begin{itemize}
+\item $e[100] = 1/(1-L/100)$ (keep playing until you win)
+\item $e[P] = 1 + \frac{L}{100} \cdot e[P+\Delta_L] + \left(1-\frac{L}{100}\right) \cdot \left(1 - \frac{P}{100}\right) \cdot e[P+\Delta_W]$\\
+for $0 \leq P \leq 99$. That is, you play a game. If you lose, $P$ goes up by $\Delta_L$ and if you win but don't get a prize pack, then $P$ goes up by $\Delta_W$.
+Make sure to cap the new $P$ value at 100 (eg. use $\min(100, P+\Delta)$ whenever $P$ goes up by $\Delta$).
+\end{itemize}
+%%\[
+%%e[P] = \left\{\begin{array}{rl}
+%%1/(1-L/100) & \text{ if } P = 100 \text{(keep playing until you win)}, \\
+%%1 + \frac{L}{100} \cdot e[i+\Delta_L] + \left(1-\frac{L}{100}\right) \cdot \left(1 - \frac{P}{100}\right) \cdot e[i+\Delta_W] & \text{ if } 0 \leq P \leq 99.
+%%\end{array}\right.
+%%\]
+\end{itemize}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{J - Snowball Fight (3/8)}
+\begin{itemize}
+\setlength\itemsep{0.5\baselineskip}
+\item Single-step simulation is too slow.
+\item Look for patterns. For example, if all three are distinct, say $A < B < C$, then we can simulate $\Delta := \min{B-A, C-B}$ steps in a single calculation: subtract $\Delta$ from $B$ and $2\Delta$ from $A$. After this, two values are the same.
+\item If two values are the same, they will follow the same pattern until they are within, say, 4 of each other (or some get close to 0). Example: $A = B = 80, C = 100$. Every 2 rounds, $A$ and $B$ will go down by 1 and $C$ by 4 until $C$ is within 1 of $A,B$. \item If they are within 4 of each other, just do single step simulation until they are within 1 of each other.
+\item If all 3 have the same health: \texttt{Rubble!}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{J - Snowball Fight (3/8)}
+\begin{itemize}
+\setlength\itemsep{0.5\baselineskip}
+\item If they are within 1 of each other, every 3 rounds each will go down by 3.
+\item If there are only 2 left, easy to tell.
+\item If two of them have small health (say $\leq 4$), then you should just simulate to avoid corner cases in the big-step simulation rules.
+\item Carefully combining these ideas leads to a solution with running time $O(1)$. Just be extra careful to get the details right!
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{F - Protect the Pollen! (1/1)}
+\begin{itemize}
+  \setlength\itemsep{0.5\baselineskip}
+\item The flowers (nodes) and vines (edges) can be represented as a graph.
+  In fact it is a tree.
+\item We can solve this recursively on the tree.
+\item For each node $r$, define $f(r,s,b)$ as the largest total
+  pollination power possible for the subtree rooted at $r$ and the total
+  size of the selected families is $s$.
+\item $b$ is a boolean flag indicating whether the root $r$ must be skipped
+  (e.g. if parent node has been chosen).
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{F - Protect the Pollen! (1/1)}
+\begin{itemize}
+  \setlength\itemsep{0.5\baselineskip}
+\item At each node, combining the answers from subtrees is essentially
+  a knapsack problem.
+\item This can be solved in $O(N S^2)$ time.
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{K - Team Change (1/2)}
+\begin{itemize}
+  \setlength\itemsep{0.5\baselineskip}
+  \item Consider a graph $G$ with vertices == players and edges == conflicts.
+  \item Label each vertex as {\bf must change}, {\bf must not change}, and {\bf doesn't matter}.
+  \item After deleting some players, it is possible to form teams if and only if each component of the resulting graph does not have both a {\bf must change} and a {\bf must not change} player.
+  \item Cast as a min-cut problem where you cut vertices. Create 2 new nodes $C, N$ representing {\bf change} and {\bf not change}. Connect $C$ to each vertex that must change, $N$ to each vertex that must not change, and find a min-size
+  $N-T$ vertex cut.
+  \item Input was small enough that even Ford-Fulkerson is fast enough.
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{frame}
+\frametitle{M - Trade Routes (1/5)}
+\begin{itemize}
+\setlength\itemsep{0.5\baselineskip}
+\item The greedy algorithm is correct: process the routes $i$ in order of value (greatest to least). If adding $i$ to the current set of chosen routes is feasible, do it.
+\item But that is too slow.
+\item Idea: push the solution ``upward''. For each vertex $j$, compute the optimal solution for nodes lying in the subtree under $j$ (i.e. as if $j$ was Rome) and store in an ordered set $R_j$
+\item To compute $R_j$ for $j$, take the $b_j$ most valuable items in $\{j\} \cup_{j' \text{ child of } j} R_{j'}$ (or all of them if there are less than $b_j$).
+\item This is still too slow.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{M - Trade Routes (1/5)}
+\begin{itemize}
+\setlength\itemsep{0.5\baselineskip}
+\item The final trick is when merging two sets, say $R_j$ and $R_{j'}$, to always add the items from the smaller of the two to the larger and regard the larger as the new merged set.
+\item Each item is ``moved'' to a new set $O(\log n)$ times since the size of the resulting set is at least twice as large as the original set. Each movement takes $O(\log n)$ time if you use an ordered set (or a binary heap). So $O(n \cdot \log^2 n)$ time in total.
+\item Can do in $O(n \cdot \log n)$ times using heaps that support $O(1)$ insertion, but they aren't in standard libraries. The above idea is fast enough.
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{B - Antialiasing (0/7)}
+\begin{itemize}
+\setlength\itemsep{0.5\baselineskip}
+\item For each query, there are four boundary segments for that pixel.
+\item Repeatedly clip given polygon against the four segments.
+\item Exact arithmetic needs to be used.
+\end{itemize}
+\end{frame}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

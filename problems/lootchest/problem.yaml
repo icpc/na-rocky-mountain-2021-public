@@ -1,0 +1,5 @@
+source: Rocky Mountain Regional Programming Contest 2021
+license: cc by-sa
+name: Loot Chest
+author: Zachary Friggstad
+validator_flags: float_tolerance 1e-6

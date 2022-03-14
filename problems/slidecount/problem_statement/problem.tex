@@ -1,0 +1,46 @@
+\problemname{Slide Count}
+
+In your programming class, you are given an assignment to analyze an
+integer array using a sliding window algorithm.  Specifically, given
+$N$ integers $w_1, \ldots, w_N$ and some constant $C$, the sliding
+window algorithm maintains start and end indices $s$ and $e$ such that
+\begin{itemize}
+\item initially $s = e  = 1$;
+\item as long as $s \leq N$:
+  \begin{itemize}
+  \item if $e+1 > N$, then increment $s$;
+  \item else if $w_s + \cdots + w_{e+1} > C$, then
+    increment $s$;
+  \item else increment $e$.
+  \end{itemize}
+\end{itemize}
+During the execution of this algorithm, each distinct pair of indices
+$(s,e)$ defines a window.  An element $w_i$ belongs to the window
+defined by $(s,e)$ if $s \leq i \leq e$.  Notice that if $s > e$, the
+window is empty.
+
+Consider the first sample input below.  The windows appearing
+during the execution of the algorithm are defined by $(1,1)$, $(1,2)$,
+$(1,3)$, $(2,3)$, $(3,3)$, $(3,4)$, $(4,4)$, $(5,4)$, $(5,5)$, and
+$(6,5)$.
+
+For each element $w_i$, determine how many different windows it
+belongs to during the execution of the sliding window algorithm.
+
+\section*{Input}
+
+The first line of input contains two integers $N$
+($1 \leq N \leq 100\,000$), which is the number of elements, and $C$
+($1 \leq C \leq 1\,000\,000$), which is the sliding window constant. 
+
+The next line contains $N$ integers $w_1, \ldots, w_N$ 
+($0 \leq w_i \leq C$).
+
+\section*{Output}
+For each element, in order, display the number of different
+windows it belongs to during the execution of the algorithm.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

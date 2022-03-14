@@ -1,0 +1,7 @@
+source: Rocky Mountain Regional Programming Contest 2021
+license: cc by-sa
+name: Team Change
+author: Zachary Friggstad
+validation: custom
+limits:
+  time_multiplier: 2.2

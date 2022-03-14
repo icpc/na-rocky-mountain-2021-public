@@ -1,0 +1,59 @@
+\problemname{Loot Chest}
+
+Your favorite online game has a prize system. After each match you win,
+there is a $P\%$ chance you will receive a prize. This value $P$ changes
+over time:
+\begin{itemize}
+  \item every time you lose a match, $P$ increases by $\Delta_L$,
+  \item every time you win a match but fail to receive a prize, $P$
+  increases by $\Delta_W$, and
+  \item every time you win a match and receive a prize, $P$ is set to $0$.
+\end{itemize}
+Whenever $P$ is increased, it is capped at $100$. That is, if $P$ is to be
+increased by $\Delta$, $P$ increases to $\min(P+\Delta, 100)$.
+
+The developers just revealed one of the prizes this season is a silverback
+gorilla suit with star-shaped sunglasses. You want it! Each prize has a $G\%$
+chance of being this gorilla suit.
+
+You start with $P = 0\%$. You have an $L\%$ chance of losing each match you
+play. Given $\Delta_L, \Delta_W, G,$ and $L$, compute the expected number of
+matches you will have to play until you obtain the silverback gorilla suit.
+
+For example, in the first sample case you win every match you play and are
+guaranteed to receive a prize every $2$ matches. Each prize has a $50\%$ chance
+of being the gorilla suit. So you expect to obtain the gorilla suit after
+receiving $2$ prizes. Thus, in expectation, it takes $4$ matches to obtain the
+gorilla suit.
+
+% WE REMOVED THIS EXPLANATION OF THE 2ND SAMPLE TO STREAMLINE THE PRESENTATION
+% In the second sample case, every pack is guaranteed to contain the
+% prize you want so we just need to compute the expected number of turns
+% until we open a pack. Whether you win or lose the first match, $P$ increases to $50\%$ after the first match.
+% The probability you open the prize pack after your second match is
+% exactly $37.5\%$ since you win this match with a $75\%$ probability
+% and, if so, then receive a pack with $50\%$ probability as $P = 50\%$
+% at the start of this match. If you do not open the pack after the second
+% match, $P$ will increase to $100\%$ and you now have a $75\%$ of opening the pack after each match. That is, if you fail to receive the prize within $2$
+% matches then the expected number of matches you must play from this point
+% onward is $1/0.75$.
+%
+% Overall, the expected number of matches to receive the prize in the second sample case is then:
+% \[ 0.375 \cdot 2 + (1-0.375) \cdot (2 + 1/0.75) \approx 2.8333333333333333333\]
+
+% INITIAL EXPLANATION, REMOVED BECAUSE IT IS SIMPLIFIED
+% For example, consider the first sample input with $P = 0, \Delta_L = 1, \Delta_W = 100, G = 50$ and $L = 0$. In this case, you are so good that you never lose a match and every win will bring $P$ right up to $100$. Also, a prize pack has a $50\%$ chance of containing the gorilla suit. So,
+% \begin{itemize}
+%   \item When you are at $P = 0$, you will win the game but fail to get the prize pack since $P = 0$. But then $P$ will be increased to $100$.
+%   \item When you are at $P = 100$, your next win is guaranteed to get you a prize pack. It has a $50\%$ chance of containg a gorilla suit. Then $P$ is reset to $0$.
+% \end{itemize}
+% That is, after every $2$ games you are guaranteed to open a prize pack which has a $50\%$ chance of containing the desired reward. In expectation, you open $2$ packs before getting this reward, much like it takes two tosses of an unbiased coin to flip ``heads'', so the expected number of matches you play is $4$.
+
+\section*{Input}
+The input consists of a single line containing four integers $\Delta_L$ ($1 \leq \Delta_L \leq 100$),
+$\Delta_W$ ($1 \leq \Delta_W \leq 100$), $G$ ($1 \leq G \leq 100$), and $L$ ($0 \leq L \leq 99$),
+which are described above.
+
+\section*{Output}
+Display the expected number of matches you will play before you obtain the gorilla suit.
+Your answer should have an absolute or relative error of at most $10^{-6}$.

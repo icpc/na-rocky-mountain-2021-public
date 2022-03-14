@@ -1,0 +1,45 @@
+\problemname{Antialiasing}
+
+\begin{center}
+\includegraphics{diagram.png}
+\end{center}
+
+To reduce aliasing effects, computer graphics systems render a polygon 
+by setting the brightness of each pixel proportional to the area of the 
+pixel inside the polygon.  If a pixel is completely inside the polygon, 
+that pixel is set to the brightest intensity.  If only half of the pixel 
+is inside the polygon, then the pixel is set halfway between darkest and 
+brightest.
+
+Given a convex polygon and a pixel location, determine the fraction of
+the pixel's area that is inside the polygon.  Each pixel is square,
+and is indexed by its row and column coordinates $r$ and $c$.  If a
+vertex of the polygon is located at $(r,c)$, then the vertex is
+located at the center of the pixel at row $r$ and column $c$.
+Rows are numbered from $0$ starting from the top row, and columns are numbered
+from $0$ starting from the leftmost column.
+
+
+\section*{Input}
+
+The first line of input specifies two integers $N$
+($3 \leq N \leq 100$), which is the number of vertices in the convex
+polygon, and $Q$ ($1 \leq Q \leq 1\,000$), which is the number of
+queries.  The next $N$ lines each contains two integers $r$ and $c$
+giving the coordinates of the polygon in
+counterclockwise order.  The next $Q$ lines each contains two integers
+$r$ and $c$ indicating the coordinates of
+the pixel we are interested in.  It is guaranteed that the area of the
+polygon is positive.  All coordinates satisfy $0 \leq r \leq 1\,000$
+and $0 \leq c \leq 1\,000$.
+
+\section*{Output}
+
+For each query, display a line indicating the fraction of the pixel's
+area inside the polygon.  The fraction should be in
+lowest terms.  
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
